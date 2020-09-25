@@ -570,6 +570,9 @@ func (c Client) executeMethod(ctx context.Context, method string, metadata reque
 			}
 			return nil, err
 		}
+		
+		// 防止链接断掉
+		req.Close = true
 
 		// Initiate the request.
 		res, err = c.do(req)
